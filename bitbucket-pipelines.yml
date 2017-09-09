@@ -1,0 +1,6 @@
+image: thiagowfx/latex:latest
+pipelines:
+        default:
+                - step:
+                        script:
+                                - make
