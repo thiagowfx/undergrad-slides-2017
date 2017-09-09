@@ -500,7 +500,7 @@ $\left\{
 \section{O problema}
 \subsection*{}
 
-% Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem. 
+% Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem.
 
 % Marta: Apesar de a ARMFUL ser bem abrangente e eficiente em prover
 % consultas envolvendo dados de domínio, de proveniência e de
@@ -664,7 +664,7 @@ Geração e execução em um Macbook Pro Retina 2015:
 omeshrefinement                             & first\_step\_refinement    & booleano        & falso                                  \\ \hline
 ovisualization                              & png                        & arquivo         & \texttt{$\sim$/image\_99.png} \\ \hline
 oinputmesh                                  & mesh\_file                 & arquivo         & \texttt{$\sim$/necker3d.mesh}               \\ \hline
-otimestepcontrolconfig                      & model\_name                & string          & PC11                                  
+otimestepcontrolconfig                      & model\_name                & string          & PC11
     \end{tabular}}
     \label{tab:experiments-data-attributes}
 \end{table}
@@ -724,7 +724,7 @@ Análise ao longo do \alert{tempo} da média da \alert{concentração de sedimen
 \begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio: 40,29~ms}]
 SELECT osolversimulationtransport.time, AVG(oline2extraction.d)
 FROM osolversimulationtransport, oline2extraction, omeshwriter
-WHERE (osolversimulationtransport.line2extraction_task_id = oline2extraction.line2extraction_task_id) 
+WHERE (osolversimulationtransport.line2extraction_task_id = oline2extraction.line2extraction_task_id)
 AND (osolversimulationtransport.meshwriter_task_id = omeshwriter.meshwriter_task_id)
 GROUP BY osolversimulationtransport.time;
 \end{lstlisting}
@@ -798,9 +798,9 @@ GROUP BY osolversimulationtransport.time;
 \begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio: 15,45~ms}]
 SELECT osolversimulationtransport.time, oline0extraction.points0, oline0extraction.points1, oline0extraction.points2, oline0extraction.d
 FROM osolversimulationtransport, oline0extraction, omeshwriter
-WHERE (osolversimulationtransport.time < 5.5) 
-AND (oline0extraction.d > 0.1) 
-AND (osolversimulationtransport.line0extraction_task_id = oline0extraction.line0extraction_task_id) 
+WHERE (osolversimulationtransport.time < 5.5)
+AND (oline0extraction.d > 0.1)
+AND (osolversimulationtransport.line0extraction_task_id = oline0extraction.line0extraction_task_id)
 AND (osolversimulationtransport.meshwriter_task_id = omeshwriter.meshwriter_task_id)
 LIMIT 10;
 \end{lstlisting}
