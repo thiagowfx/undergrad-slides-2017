@@ -22,7 +22,7 @@
 
 % TODO(tperrotta): add the final option once the slides are complete
 % [handout]
-% \documentclass[12pt,final]{beamer}
+% \documentclass[12pt,compress,final]{beamer}
 \documentclass[12pt,compress]{beamer}
 
 \mode<presentation> {
@@ -121,7 +121,7 @@
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{makecell}
-\usepackage{colortbl}
+\usepackage{colortbl} % highlight rows: \rowcolor{}
 
 % curly brackets besides tables (\ldelim, \rdelim)
 \usepackage{bigdelim}
@@ -227,6 +227,7 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \pgfdeclareimage[height=1.5cm]{university-logo}{escola-politecnica-ufrj}
 \logo{\pgfuseimage{university-logo}}
 
+% Environment to remove the headline from a frame
 % https://tex.stackexchange.com/questions/44983/beamer-removing-headline-and-its-space-on-a-single-frame-for-plan-but-keepin
 \makeatletter
     \newenvironment{withoutheadline}{
@@ -238,6 +239,7 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 % https://tex.stackexchange.com/questions/53781/how-can-i-include-the-logo-in-some-slides-and-remove-in-others-using-beamer
 \newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
 
+% Prepend TOC to every section
 \AtBeginSection[] {
 %     \begin{withoutheadline}
 %     \setbeamertemplate{footline}{}
@@ -248,65 +250,12 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 }
 
 % \includeonlyframes{
+% current,
 % label1,
 % label2,
 % }
 
 \begin{document}
-
-%----------------------------------------------------------------------------------------
-%	PRESENTATION SLIDES
-%----------------------------------------------------------------------------------------
-
-%------------------------------------------------
-% \section{Section Example} Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-
-% \subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%------------------------------------------------
-
-%---------------------------
-% SLIDES BASICS:
-%---------------------------
-
-%------------------------------------------
-% \tableofcontents[currentsection,currentsubsection]
-%
-% \begin[fragile,label=frame1]{frame}{Title}{Subtitle}
-%
-% \frametitle{Title}
-% \framesubtitle{Subtitle}
-%
-% \begin{itemize}[<+->]
-% \item Item 1.
-% \item Item 2.
-% \begin{itemize}[<.->]
-%   \item<.> Sub-Item 1.
-%   \item Sub-Item 2.
-% \end{itemize}
-%
-% \end{itemize}
-%
-% \begin{enumerate}
-% \item Item 1.
-% \item Item 2.
-% \end{enumerate}
-%
-% \begin{block}{Block 1}
-% Lorem ipsum dolor.
-% \end{block}
-%
-% \begin{alertblock}{Block 1}
-% Lorem ipsum dolor.
-% \end{alertblock}
-%
-% \begin{exampleblock}{Block 1}
-% Lorem ipsum dolor.
-% \end{exampleblock}
-%
-% \note[item]{Note that this slide is boring.}
-%
-% \end{frame}
-%------------------------------------------
 
 % Print the title page as the first slide
 % https://tex.stackexchange.com/questions/33767/remove-section-header-from-a-beamer-theme-singapore
@@ -335,15 +284,19 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \section{Introdução}
 \subsection*{Introdução}
 
-\begin{frame}{Introdução}
-\todox{Introdução}
+\begin{frame}{Introdução}{Análise do \alert{Rastro de Proveniência} em \alert{Simulações Computacionais} em Larga Escala}
+    
+    \centerline{\textsc{Análise do \alert{Rastro de Proveniência} em \alert{Simulações Computacionais} em Larga Escala}}
+    
+    \todox{Introdução}
 
-% Simulação científica
-% Rastro de proveniência
-
+    % Simulação científica
+    % Rastro de proveniência
 \end{frame}
 
 %------------------------------------------------
+
+\subsection*{Motivação}
 
 \begin{frame}{Motivação}
 \todox{Motivação}
@@ -557,15 +510,12 @@ $\left\{
 %------------------------------------------------
 
 \section{Solução} % alt: Proposta, Problema
-\subsection*{}
 
-% % Rastreamento de dados de proveniência através de mapeamento de atributos
-
-% 3 tipos de consultas
+% Rastreamento de dados de proveniência através de mapeamento de atributos
 
 % Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem.
 
-% Marta: Apesar de a ARMFUL ser bem abrangente e eficiente em prover
+% [OK] Marta: Apesar de a ARMFUL ser bem abrangente e eficiente em prover
 % consultas envolvendo dados de domínio, de proveniência e de
 % execução, ela oferece um recurso limitado para o usuário submeter
 % consultas dessas três classes. Na verdade, o usuário precisa não
@@ -580,11 +530,20 @@ $\left\{
 % automaticamente, citando-as e se possível,
 % explicando porque não foram usadas.
 
+\subsection*{O problema}
+
 \begin{frame}{O problema}
-\todox{Descrever o problema a ser resolvido}
+    \todox{3 tipos de consulta}
+    \todox{Descrever o problema a ser resolvido}
+    \vfill
+    \setbeamercovered{invisible}
+    \pause
+    \centerline{\textit{\large ``Como submeter os três tipos de consulta anteriores?''}}
 \end{frame}
 
 %------------------------------------------------
+
+\subsection*{A arquitetura ARMFUL}
 
 \begin{frame}[t]{A arquitetura ARMFUL}
 
@@ -633,26 +592,75 @@ $\left\{
 
 %------------------------------------------------
 
-\begin{frame}{DfAnalyzer : uma instância da ARMFUL}
+\subsection*{DfAnalyzer: uma instância da ARMFUL}
+
+\begin{frame}{DfAnalyzer: uma instância da ARMFUL}
 \begin{itemize}
-\item Arquivo JSON
+\item Metadados $\leftarrow$ arquivos JSON
 \begin{itemize}
 \item Dependências de dados
 \item Dados de proveniência
 \end{itemize}
 \item MonetDB
 \begin{itemize}
-\item SGBD relacional orientado a colunas
+\item SGBD relacional
+\item Orientado e otimizado a colunas
+\item Indexação: \textit{lazy}
 \end{itemize}
+\item \alert{QPP: Pré-processador de consultas}
 \end{itemize}
+
+\perrotta{Mais alguma sugestão?}
 
 \note[item]{MonetDB: lazy indexing / optimization}
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{Metodologia}{Proposta: pré-processador de consultas (QPP)}
-\todox{QPP, Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas}
+\subsection*{QPP: Pré-processador de consultas}
+
+\begin{frame}[t]{QPP: Pré-processador de consultas}
+% \todox{QPP, Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas}
+
+\centerline{\large{\textsc{Proposta}}}
+
+\begin{columns}[t]
+    
+\begin{column}{0.5\textwidth}
+
+\centerline{\textbf{Problemas}}
+
+\begin{itemize}
+\item<1-> Expressar manualmente consultas em SQL
+    \begin{itemize}
+    \item enfadonho
+    \item propenso a erros
+    \end{itemize}
+\item<2-> Identificar relacionamentos
+    \begin{itemize}
+    \item complexo
+    \end{itemize}
+\item<3-> É necessário conhecer o esquema do BD
+\end{itemize}
+
+\end{column}
+
+\vrule{}
+
+\begin{column}{0.5\textwidth}
+
+\centerline{\textbf{Soluções}}
+
+\begin{itemize}
+    \item<1- | alert@1> Consultas em SQL geradas automaticamente
+    \item<2- | alert@2> Junções ``automáticas'' baseadas no rastreio de dados de proveniência
+    \item<3- | alert@3> Sem necessidade de se conhecer a fundo o esquema do BD
+\end{itemize}
+
+\end{column}
+
+\end{columns}
+
 \end{frame}
 
 %------------------------------------------------
@@ -737,7 +745,7 @@ $ds_4$                        & $\textup{taskid\_}dt_2$      & inteiro
 \item 23 classes $\mid$ 2000 SLOC
 \item 152 testes (\textit{JUnit})
 \end{itemize}
-\item Integrado ao DfAnalyzer
+\item Integração ao DfAnalyzer
 \end{itemize}
 \end{block}
 
@@ -1264,3 +1272,57 @@ Disponíveis em: \url{https://speakerdeck.com/thiagowfx}
 %------------------------------------------------
 
 \end{document}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+% \section{Section Example} Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+
+% \subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+
+%---------------------------
+% SLIDES BASICS:
+%---------------------------
+
+%------------------------------------------
+% \tableofcontents[currentsection,currentsubsection]
+%
+% \begin[fragile,label=frame1]{frame}{Title}{Subtitle}
+%
+% \frametitle{Title}
+% \framesubtitle{Subtitle}
+%
+% \begin{itemize}[<+->]
+% \item Item 1.
+% \item Item 2.
+% \begin{itemize}[<.->]
+%   \item<.> Sub-Item 1.
+%   \item Sub-Item 2.
+% \end{itemize}
+%
+% \end{itemize}
+%
+% \begin{enumerate}
+% \item Item 1.
+% \item Item 2.
+% \end{enumerate}
+%
+% \begin{block}{Block 1}
+% Lorem ipsum dolor.
+% \end{block}
+%
+% \begin{alertblock}{Block 1}
+% Lorem ipsum dolor.
+% \end{alertblock}
+%
+% \begin{exampleblock}{Block 1}
+% Lorem ipsum dolor.
+% \end{exampleblock}
+%
+% \note[item]{Note that this slide is boring.}
+%
+% \end{frame}
+%------------------------------------------
