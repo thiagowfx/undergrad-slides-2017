@@ -23,7 +23,7 @@
 % TODO(tperrotta): add the final option once the slides are complete
 % [handout]
 % \documentclass[12pt,final]{beamer}
-\documentclass[12pt]{beamer}
+\documentclass[12pt,compress]{beamer}
 
 \mode<presentation> {
 
@@ -84,7 +84,7 @@
 \setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
 
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
-\beamertemplatenavigationsymbolsempty
+%\beamertemplatenavigationsymbolsempty
 
 % grey out items after pause
 \setbeamercovered{transparent,highly dynamic}
@@ -95,6 +95,8 @@
 
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{enumerate items}[default]
+
+\setbeamertemplate{navigation symbols}[only frame symbol]
 }
 
 \usepackage{iftex}
@@ -119,6 +121,7 @@
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{makecell}
+\usepackage{colortbl}
 
 % curly brackets besides tables (\ldelim, \rdelim)
 \usepackage{bigdelim}
@@ -235,6 +238,15 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 % https://tex.stackexchange.com/questions/53781/how-can-i-include-the-logo-in-some-slides-and-remove-in-others-using-beamer
 \newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
 
+\AtBeginSection[] {
+%     \begin{withoutheadline}
+%     \setbeamertemplate{footline}{}
+    \begin{frame}<beamer>{Agenda}
+    \tableofcontents[currentsection]  
+    \end{frame}
+%     \end{withoutheadline}
+}
+
 % \includeonlyframes{
 % label1,
 % label2,
@@ -311,20 +323,30 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 %------------------------------------------------
 
 % Print the table of contents
-\begin{withoutheadline}
-\setbeamertemplate{footline}{}
-\begin{frame}{Agenda}
-  \tableofcontents{} % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-\end{frame}
-\end{withoutheadline}
+% \begin{withoutheadline}
+% \setbeamertemplate{footline}{}
+% \begin{frame}{Agenda}
+%   \tableofcontents{} % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+% \end{withoutheadline}
 
 %------------------------------------------------
 
 \section{Introdução}
-\subsection*{}
+\subsection*{Introdução}
 
-\begin{frame}{Introdução / Motivação}
+\begin{frame}{Introdução}
 \todox{Introdução}
+
+% Simulação científica
+% Rastro de proveniência
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Motivação}
+\todox{Motivação}
 \end{frame}
 
 %------------------------------------------------
@@ -477,28 +499,69 @@ $\left\{
 
 %------------------------------------------------
 
-\begin{frame}{Dados de proveniência}
+{\nologo
+\begin{frame}[t,squeeze]{Dados de proveniência}{Especificação}
 
-\centerline{$\approx$ \textsc{causalidade}}
-
-\begin{exampleblock}{Proveniência}
+\begin{alertblock}{Proveniência $\approx$ \textsc{causalidade}}
 \textit{``Lugar de onde alguém ou alguma coisa provém; origem; fonte.''} \\
-\hspace*{\fill}--- Dicionário Aulete
+\hspace*{\fill}--- \textsc{Dicionário Aulete}
+\end{alertblock}
+
+\begin{exampleblock}{Tipos de dados de proveniência}
+\centerline{Diferentes níveis de abstração:}
+\begin{description}[retrospectiva]
+\item[prospectiva] \alert{processo} computacional, passo-a-passo
+\item[retrospectiva] contexto de \alert{execução}
+\end{description}
 \end{exampleblock}
 
-\begin{block}{Tipos de proveniência}
-\begin{description}[retrospectiva]
-\item[prospectiva]
-\item[retrospectiva]
-\end{description}
+\begin{block}{Captura de dados de proveniência}
+\begin{itemize}
+\item \textit{online} $\rightarrow$ flexível
+\item \textit{offline} $\rightarrow$ desempenho
+\end{itemize}
 \end{block}
+
+\note[item]{\{ambiente, tempo\} de execução}
+\end{frame}
+}
+
+%------------------------------------------------
+
+\begin{frame}[t]{Dados de proveniência}{Exemplo}
+
+\centerline{\footnotesize \textbf{Proveniência Prospectiva}}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{img/word-count-prospective.pdf}
+\end{figure}
+
+\begin{table}[htb]
+    \centering
+    \footnotesize
+    \begin{tabular}{r|l}
+        \multicolumn{2}{c}{\textbf{Proveniência Retrospectiva}} \\
+        \midrule
+        \textit{Timestamp} de início & 2017-06-25 03:11:05.231                         \\
+        \textit{Timestamp} de fim    & 2017-06-25 03:11:09.586                         \\
+        PID                          & 4671                                            \\
+        Linha de comando             & \texttt{./sort --in=freq-list.csv} \\
+        Variáveis de ambiente        & \texttt{PWD=/exec:PATH=/usr/bin} \\
+        Usuário                      & tperrotta                                       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{O problema}
+\section{Solução} % alt: Proposta, Problema
 \subsection*{}
+
+% % Rastreamento de dados de proveniência através de mapeamento de atributos
+
+% 3 tipos de consultas
 
 % Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem.
 
@@ -523,26 +586,273 @@ $\left\{
 
 %------------------------------------------------
 
-\begin{frame}{Proposta}
-\todox{Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas}
+\begin{frame}[t]{A arquitetura ARMFUL}
+
+\only<1>{
+\framesubtitle{Conceito}
+\begin{block}{Funcionamento}
+\begin{enumerate}
+\item Gerência de conteúdo científico $\leftarrow$ arquivos científicos
+\item Indexação dos dados científicos
+\item Correlação em um SGBD relacional
+\begin{itemize}
+\item Dados de domínio $\searrow$
+\item Dados de proveniência do fluxo de dados
+\end{itemize}
+\end{enumerate}
+\end{block}
+
+\begin{itemize}
+\item Baseada em componentes
+\item Suporta os 3 tipos de consulta mencionados
+\item \textit{On-line} e \textit{off-line}
+\end{itemize}
+
+\perrotta{Mais alguma sugestão?}
+
+\note[item]{leitura do conteúdo, tokenização, filtragem de conteúdo, análise}
+}
+
+\only<2>{
+\framesubtitle{Diagrama}
+\begin{figure}
+\includegraphics[width=\textwidth]{img/armful-architecture-simplified.pdf}
+% \caption{
+% \\ Cor branca: captura de dados de proveniência
+% \\ Cor cinza: etapas de processamento
+% }
+\end{figure}
+
+\begin{description}[Cor branca]
+\item[Cor branca] a captura de dados de proveniência
+\item[Cor cinza] as etapas de processamento
+\end{description}
+}
+
 \end{frame}
 
 %------------------------------------------------
 
-\section{Desenvolvimento}
+\begin{frame}{DfAnalyzer : uma instância da ARMFUL}
+\begin{itemize}
+\item Arquivo JSON
+\begin{itemize}
+\item Dependências de dados
+\item Dados de proveniência
+\end{itemize}
+\item MonetDB
+\begin{itemize}
+\item SGBD relacional orientado a colunas
+\end{itemize}
+\end{itemize}
 
-\subsection*{Metodologia}
-\begin{frame}{Metodologia}
-\todox{Físico, lógico, híbrido}
+\note[item]{MonetDB: lazy indexing / optimization}
 \end{frame}
 
-\subsection*{Implementação}
-\begin{frame}{Implementação}
-\todox{Como implementei? Java, HashMultimaps, etc}
+%------------------------------------------------
 
+\begin{frame}{Metodologia}{Proposta: pré-processador de consultas (QPP)}
+\todox{QPP, Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas}
+\end{frame}
+
+%------------------------------------------------
+
+\subsection*{Metodologia}
+
+{\nologo
+\begin{frame}[t]{Metodologia}{Mapeamento de atributos}
+
+\only<1>{
+\begin{alertblock}{\textbf{Definição}: mapeamento de atributos}
+\centerline{$ds_1.a_I \leftrightarrow ds_2.a_{II}$}
+\smallskip
+\begin{enumerate}
+\item mesmo identificador ($a_I$ e $a_{II}$)
+\item mesmo tipo ($a_I$ e $a_{II}$)
+\item conjuntos de dados adjacentes ($ds_1$ e $ds_2$)
+\end{enumerate}
+\end{alertblock}
+
+\begin{block}{Tipos de mapeamento de atributos}
+\begin{description}[híbrido]
+\item[físico]  atributos relacionados à mesma instância de execução (\textit{taskid}) % / tarefa
+\item[lógico]  atributos de domínio
+\item[híbrido] \emph{ambos} os anteriores
+\end{description}
+\end{block}
+
+\perrotta{Destacar o híbrido? Nossa proposta?}
+}
+
+\only<2>{
+\vspace{-.6cm}
+
+\begin{figure}
+\includegraphics[width=.6\textwidth]{img/example-query-dataflow.pdf}
+\end{figure}
+
+\begin{table}[!htb]
+    \small
+    \centering
+    \begin{tabular}{c|c|c}
+    \textbf{Conjunto de dados} & \textbf{Nome do atributo} & \textbf{Tipo do atributo} \\ \hline
+\rowcolor{red!10}
+$ds_1$                        & $da_1$                        & inteiro                 \\
+$ds_1$                        & $da_2$                        & booleano                \\
+\rowcolor{blue!10}
+$ds_1$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\ \hline
+\rowcolor{red!10}
+$ds_2$                        & $da_1$                        & inteiro                 \\
+$ds_2$                        & $da_2$                        & inteiro                 \\
+\rowcolor{blue!10}
+$ds_2$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\
+\rowcolor{green!10}
+$ds_2$                        & $\textup{taskid\_}dt_2$      & inteiro                 \\ \hline
+\rowcolor{green!10}
+$ds_4$                        & $\textup{taskid\_}dt_2$      & inteiro                  
+    \end{tabular}
+\end{table}
+}
+
+\end{frame}
+}
+
+%------------------------------------------------
+
+\section{Desenvolvimento}
+\subsection*{Implementação do QPP}
+
+{\nologo
+% \setbeamertemplate{footline}{}
+\begin{frame}[t,squeeze]{Implementação do QPP}
+\vspace{-.5cm}
+\small
+
+\begin{block}{Estrutura}
 \begin{itemize}
 \item Java 8
+\begin{itemize}
+\item Orientação a objetos
+\item Consolidada na academia
+\item 23 classes $\mid$ 2000 SLOC
+\item 152 testes (\textit{JUnit})
 \end{itemize}
+\item Integrado ao DfAnalyzer
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Fluxo básico de execução}
+\begin{enumerate}
+\item Conexão do Java com o MonetDB
+\item Carregamento dos metadados do fluxo de dados
+\item Instanciação do QPP
+\item Execução de sucessivas \alert{consultas} (\texttt{generateSqlQuery})
+\end{enumerate}
+\end{exampleblock}
+\end{frame}
+}
+
+%------------------------------------------------
+
+\begin{frame}{Implementação do QPP}{Algumas técnicas adotadas}
+
+\begin{itemize}
+\item \textit{Memoization} (``\textit{caching}'')
+\vfill
+\item \textit{Hash Multimap}
+\begin{itemize}
+\item Chave-valor
+\item $O(1)$ (em geral${}^{\ast}$)
+\end{itemize}
+\vfill
+\item Busca em profundidade (DFS) no DAG do fluxo de dados
+\vfill
+\end{itemize}
+
+\perrotta{Mais alguma sugestão?}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection*{Função de geração das consultas do QPP}
+
+\begin{frame}[fragile]{Função de geração das consultas do QPP}{Estrutura básica da cláusula SQL}
+
+\begin{lstlisting}[language=sql,deletendkeywords={TIME},basicstyle=\large]
+SELECT ds%${}_1$.A%, ds%${}_2$.B%     -- %projeções%
+FROM ds%${}_1$%, ds%${}_2$%    -- %computado automaticamente%
+WHERE ds%${}_1$.A %>% 10%      -- %seleções%
+\end{lstlisting}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]{Função de geração das consultas do QPP}{\texttt{generateSqlQuery}}
+
+\vspace{-1cm}
+
+\begin{table}
+\centering
+\begin{tabular}{r|l|c}
+\toprule
+\textbf{Argumento} & \textbf{Tipo} & \textbf{Exemplo}               \\
+\midrule
+D                  & fluxo de dados              \\
+\alert{dsOrigins}          & lista de conjuntos de dados & \texttt{[inputmesh]} \\
+\alert{dsDestinations}     & lista de conjuntos de dados & \texttt{[outputmesh]} \\
+type               & físico, lógico ou híbrido   \\
+projections        & lista de strings & [``ds\textsubscript{1}.attr'']             \\
+selections         & lista de strings & [``ds\textsubscript{2}.a\textsubscript{2} $>$ 10'']            \\
+dsIncludes         & lista de conjuntos de dados & [ds\textsubscript{1}, ds\textsubscript{2}] \\
+dsExcludes         & lista de conjuntos de dados \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vfill
+
+\begin{itemize}
+\item Produto cartesiano entre os conjuntos de dados de entrada e os de saída
+\item Busca em profundidade (DFS)
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]{Função de geração das consultas do QPP}{Exemplos de produto cartesiano}
+
+\vspace{-.75cm}
+
+\begin{columns}
+
+\column{0.75\textwidth}
+
+\begin{figure}
+\includegraphics[width=0.85\textwidth]{img/example-query-dataflow-1.pdf}
+\end{figure}
+
+\column{0.25\textwidth}
+
+ds\textsubscript{1} $\vdash$ ds\textsubscript{4}
+
+\end{columns}
+
+\begin{columns}[t]
+
+\column{0.75\textwidth}
+
+\begin{figure}
+\includegraphics[width=0.85\textwidth]{img/example-query-dataflow-2.pdf}
+\end{figure}
+
+\column{0.25\textwidth}
+
+ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
+
+\end{columns}
 
 \end{frame}
 
@@ -553,7 +863,7 @@ $\left\{
 \subsection*{Simulação computacional utilizada}
 \begin{frame}[t]{Simulação computacional utilizada}{Sedimentação de dinâmica de fluidos computacionais}
 
-\vspace{-.45cm}
+\vspace{-.35cm}
 
 \only<1>{
 \begin{alertblock}{Objetivo}
@@ -809,9 +1119,26 @@ LIMIT 10;
 
 %------------------------------------------------
 
-\subsection{Resultados}
-\begin{frame}{Resultados}
-\todox{Tempo, Resultados esperados foram obtidos?, imagens, gráficos, diagramas}
+\subsection*{Observações}
+\begin{frame}{Observações}
+
+\begin{block}{QPP $\Rightarrow$ \texttt{generateSqlQuery}}
+\begin{itemize}
+\item \alert{\textsc{[OK]}} Resultados esperados foram obtidos
+\begin{itemize}
+\item sintaticamente válidos
+\end{itemize}
+\item \alert{\textsc{[OK]}} Baixo \textit{overhead} de tempo para a geração das consultas $\rightarrow$ ordem de \texttt{ms}
+\begin{itemize}
+\item pré-processamento com as estruturas de dados % os \textit{hash multimaps}
+\item idempotente
+\end{itemize}
+\item \alert{\textsc{[OK]}} intuitiva de usar
+\end{itemize}
+\end{block}
+
+\perrotta{Mais alguma sugestão?}
+
 \end{frame}
 
 %------------------------------------------------
@@ -847,34 +1174,42 @@ LIMIT 10;
 \subsection*{Considerações finais}
 
 {\nologo
-\begin{frame}{Considerações finais}{Recapitulando...}
+\begin{frame}[t,squeeze]{Considerações finais}
 
-\begin{block}{Simulações computacionais}
+\footnotesize
+
+% Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem.
+
+\onslide<1>{
+\begin{block}{Simulação computacional...}
 \begin{itemize}
-\item Fluxo, conjuntos, transformações de dados\ldots{}
-\item Mapeamentos de atributos (físico, lógico, híbrido)
-\item Dados de proveniência (prospectiva, retrospectiva)
+\item Fluxo, conjuntos, transformações, atributos de dados\ldots{}
+\item Análise de dados de domínio para simulações subsequentes
+\item Dados de proveniência (prospectiva, retrospectiva), \textit{workflows}\ldots{}
 \end{itemize}
 \end{block}
-
-\todox{Reiterar o problema / a motivação do trabalho}
+}
 
 \vfill
-\pause
 
-\begin{alertblock}{Pré-processador de consultas (QPP)}
+\onslide<2>{
+\begin{alertblock}{ARMFUL $\Rightarrow$ DfAnalyzer $\Rightarrow$ QPP}
 \begin{itemize}
-\item Arquitetura ARMFUL $\Longrightarrow$ DfAnalyzer $\Longrightarrow$ QPP
-\item Análise de dados de domínio, junções automáticas
+\item \alert{Rastreio} do fluxo de elementos de dados
+\item \alert{Abstração} do fluxo de dados (níveis físico, lógico e híbrido)
+\item Mapeamento de atributos $\rightarrow$ \alert{junções ``automáticas''}
+\item \alert{Facilidade} em desenvolver consultas
 \item Não há necessidade de se conhecer o esquema do BD
-\item Curva de aprendizado, usabilidade
-\item \textit{Overhead} de execução pequeno
+\item Baixo \textit{overhead} de execução
 \end{itemize}
 \end{alertblock}
+}
 
+\note[item]{arquivos científicos}
 \note[item]{recapitular o conteúdo conceitual abordado}
 \note[item]{enfatizar as vantagens do QPP}
 \note[item]{defender o propósito do trabalho}
+\note[item]{menor curva de aprendizado, maior usabilidade}
 \end{frame}
 }
 
@@ -927,33 +1262,5 @@ Disponíveis em: \url{https://speakerdeck.com/thiagowfx}
 }
 
 %------------------------------------------------
-
-% \begin{frame}
-% \frametitle{Table}
-% \begin{table}
-% \begin{tabular}{l l l}
-% \toprule
-% \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-% \midrule
-% Treatment 1 & 0.0003262 & 0.562 \\
-% Treatment 2 & 0.0015681 & 0.910 \\
-% Treatment 3 & 0.0009271 & 0.296 \\
-% \bottomrule
-% \end{tabular}
-% \caption{Table caption}
-% \end{table}
-% \end{frame}
-
-%------------------------------------------------
-
-% \begin{frame}
-% \frametitle{Figure}
-% Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
-% \end{frame}
-
-%----------------------------------------------------------------------------------------
 
 \end{document}
