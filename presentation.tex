@@ -21,8 +21,7 @@
 %----------------------------------------------------------------------------------------
 
 % TODO(tperrotta): add the final option once the slides are complete
-% [handout]
-% \documentclass[12pt,compress,final]{beamer}
+% aditional options: [handout, final]
 \documentclass[12pt,compress]{beamer}
 
 \mode<presentation> {
@@ -284,22 +283,53 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \section{Introdução}
 \subsection*{Introdução}
 
+{\nologo
 \begin{frame}{Introdução}{Análise do \alert{Rastro de Proveniência} em \alert{Simulações Computacionais} em Larga Escala}
-    
-    \centerline{\textsc{Análise do \alert{Rastro de Proveniência} em \alert{Simulações Computacionais} em Larga Escala}}
-    
-    \todox{Introdução}
 
-    % Simulação científica
-    % Rastro de proveniência
+    \begin{alertblock}{Simulação computacional}
+    \textit{``Método de abstração e sistematização do processo experimental ou parte dele''}
+    \smallskip
+    \begin{itemize}
+        \item experimentos científicos em ambientes computacionais
+        \item fluxo de dados
+    \end{itemize}
+    \end{alertblock}
+    
+    \begin{columns}
+    \column{.7\textwidth}
+    \begin{block}{Rastro de proveniência}
+    \begin{itemize}
+        \item Monitoramento da simulação durante sua execução
+        \item Reconstrução do fluxo\ldots{}
+        \begin{itemize}
+            \item \ldots{}de arquivos % nível físico
+            \item \ldots{}de dados % nível lógico
+        \end{itemize}
+    \end{itemize}
+    \end{block}
+    \column{.3\textwidth}
+    \begin{figure}
+    \includegraphics[width=.9\textwidth]{img/experiments-dataflow.pdf}
+    \end{figure}
+    \end{columns}
+    
 \end{frame}
+}
 
 %------------------------------------------------
 
 \subsection*{Motivação}
 
 \begin{frame}{Motivação}
-\todox{Motivação}
+
+\begin{itemize}
+    \item Simulações computacionals levam um longo tempo para serem executadas % mesmo em PAD
+    \item Torna-se necessário extrair resultados mesmo \emph{antes} do término das mesmas
+    \pause
+    \item Avaliar grandezas tais como resíduos ou estimativas de erro
+    \item Soluções existentes são difíceis de serem configuradas pelos usuários
+\end{itemize}
+
 \end{frame}
 
 %------------------------------------------------
@@ -532,13 +562,19 @@ $\left\{
 
 \subsection*{O problema}
 
-\begin{frame}{O problema}
-    \todox{3 tipos de consulta}
-    \todox{Descrever o problema a ser resolvido}
+\begin{frame}[t]{O problema}
+    \begin{exampleblock}{Três tipos de consulta}
+    \begin{enumerate}
+        \item Análise de \alert{dados científicos} $\mid$ Conteúdo de domínio
+        \item Rastreamento do fluxo de \alert{múltiplos arquivos}
+        \item Rastreamento de \alert{elementos de dados relacionados} em múltiplos arquivos
+    \end{enumerate}
+    \end{exampleblock}
     \vfill
     \setbeamercovered{invisible}
     \pause
-    \centerline{\textit{\large ``Como submeter os três tipos de consulta anteriores?''}}
+    \centerline{\textit{\large ``Como realizar os três tipos anteriores de consulta?''}}
+    \vfill
 \end{frame}
 
 %------------------------------------------------
@@ -547,7 +583,7 @@ $\left\{
 
 \begin{frame}[t]{A arquitetura ARMFUL}
 
-\only<1>{
+\only<1 | handout:1>{
 \framesubtitle{Conceito}
 \begin{block}{Funcionamento}
 \begin{enumerate}
@@ -572,7 +608,7 @@ $\left\{
 \note[item]{leitura do conteúdo, tokenização, filtragem de conteúdo, análise}
 }
 
-\only<2>{
+\only<2 | handout:2>{
 \framesubtitle{Diagrama}
 \begin{figure}
 \includegraphics[width=\textwidth]{img/armful-architecture-simplified.pdf}
@@ -670,7 +706,7 @@ $\left\{
 {\nologo
 \begin{frame}[t]{Metodologia}{Mapeamento de atributos}
 
-\only<1>{
+\only<1 | handout:1>{
 \begin{alertblock}{\textbf{Definição}: mapeamento de atributos}
 \centerline{$ds_1.a_I \leftrightarrow ds_2.a_{II}$}
 \smallskip
@@ -692,7 +728,7 @@ $\left\{
 \perrotta{Destacar o híbrido? Nossa proposta?}
 }
 
-\only<2>{
+\only<2 | handout:2>{
 \vspace{-.6cm}
 
 \begin{figure}
@@ -873,7 +909,7 @@ ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 
 \vspace{-.35cm}
 
-\only<1>{
+\only<1 | handout:1>{
 \begin{alertblock}{Objetivo}
 \begin{itemize}
 \item Simular a turbidez e a perturbação de correntes de fluidos computacionais
@@ -889,7 +925,7 @@ ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 \end{figure}
 }
 
-\only<2>{
+\only<2 | handout:2>{
 \begin{block}{Como?}
 \begin{itemize}
 \item \texttt{libMesh}: refinamento de malhas e elementos finitos adaptativos
