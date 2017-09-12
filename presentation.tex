@@ -298,7 +298,7 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
     \column{.7\textwidth}
     \begin{block}{Rastro de proveniência}
     \begin{itemize}
-        \item Monitoramento da simulação durante sua execução
+        \item Monitoramento da simulação durante a sua execução
         \item Reconstrução do fluxo\ldots{}
         \begin{itemize}
             \item \ldots{}de arquivos % nível físico
@@ -322,7 +322,7 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \begin{frame}{Motivação}
 
 \begin{itemize}
-    \item Simulações computacionais levam um longo tempo para serem executadas % mesmo em PAD
+    \item Simulações computacionais levam um \alert{longo tempo} para serem executadas % mesmo em PAD
     \item Torna-se necessário extrair resultados mesmo \emph{antes} do término das mesmas
     \item Avaliar grandezas tais como resíduos ou estimativas de erro
     \item Soluções existentes são difíceis de serem configuradas pelos usuários
@@ -352,7 +352,6 @@ $\left\{
 \vfill
 
 \begin{itemize}
-\item \alert{"Esquema"} de uma simulação computacional
 \item \alert{Grafo} direcionado acíclico:
 \begin{itemize}
 \item nós $\leftrightarrow$ transformações de dados
@@ -364,30 +363,32 @@ $\left\{
 \includegraphics[width=.35\textwidth]{img/graph.pdf}
 \end{figure}
 
+\note[item]{Pode representar uma simulação computacional}
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}[t]{Transformação de dados}
-
-\begin{itemize}
-\item \alert{consome} conjuntos de dados (entrada)
-\item \alert{produz} conjuntos de dados (saída)
-\item corresponde a um ou mais \alert{programas} de simulação
-\end{itemize}
-
-\vfill
-
-\begin{figure}
-\includegraphics[width=.5\textwidth]{img/example-data-transformation.pdf}
-% \caption{Transformação de dados com dois conjuntos de dados de entrada e dois de saída}
-\end{figure}
-
-\end{frame}
+% \begin{frame}[t]{Transformação de dados}
+% 
+% \begin{itemize}
+% \item \alert{consome} conjuntos de dados (entrada)
+% \item \alert{produz} conjuntos de dados (saída)
+% \item corresponde a um ou mais \alert{programas} de simulação
+% \end{itemize}
+% 
+% \vfill
+% 
+% \begin{figure}
+% \includegraphics[width=.5\textwidth]{img/example-data-transformation.pdf}
+% % \caption{Transformação de dados com dois conjuntos de dados de entrada e dois de saída}
+% \end{figure}
+% 
+% \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}[t]{Conjunto de dados}
+{\nologo
+\begin{frame}[t,squeeze]{Conjunto de dados}
 
 \centerline{$ds = (A, C)$}
 
@@ -403,49 +404,59 @@ $\left\{
 \vfill
 
 \begin{figure}
-\includegraphics[width=.5\textwidth]{img/example-data-transformation.pdf}
+\includegraphics[width=.45\textwidth]{img/example-data-transformation.pdf}
 % \caption{Transformação de dados com dois conjuntos de dados de entrada e dois de saída}
 \end{figure}
 
-\end{frame}
-
-%------------------------------------------------
-
-{\nologo
-\begin{frame}{Atributo de dados}
-
-\centerline{\( A = \{a_1, a_2, \ldots, a_{\delta} \} \)}
-
-$\left\{
-\begin{tabular}{p{\textwidth}}
-\begin{itemize}
-\item $\textup{da} = (\textup{nome},\textup{tipo})$
-\item $\textup{\alert{tipo}} \in \{\textup{\small inteiro, ponto flutuante, texto, arquivo, booleano}\}$
-\end{itemize}
-\end{tabular}
-\right.$
-
 \vfill
 
-\begin{exampleblock}{Exemplo}
-\begin{table}[htb]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Nome do atributo} & \textbf{Tipo do atributo} \\
-        \hline
-        Nome             & texto           \\
-        \hline
-        Idade            & inteiro         \\
-        \hline
-        Altura \( (m) \) & ponto flutuante \\
-        \hline
-    \end{tabular}
-\end{table}
-\end{exampleblock}
+\begin{block}{Atributos de dados}
+\begin{itemize}
+\item \( \textup{a} = (\textup{nome},\textup{tipo}) \)
+\item $\textup{\alert{tipo}} \in \{\textup{\small inteiro, ponto flutuante, texto, arquivo, booleano}\}$
+\end{itemize}
+\end{block}
 
 \end{frame}
 }
+
+%------------------------------------------------
+
+% {\nologo
+% \begin{frame}{Atributo de dados}
+% 
+% \centerline{\( A = \{a_1, a_2, \ldots, a_{\delta} \} \)}
+% 
+% $\left\{
+% \begin{tabular}{p{\textwidth}}
+% \begin{itemize}
+% \item $\textup{da} = (\textup{nome},\textup{tipo})$
+% \item $\textup{\alert{tipo}} \in \{\textup{\small inteiro, ponto flutuante, texto, arquivo, booleano}\}$
+% \end{itemize}
+% \end{tabular}
+% \right.$
+% 
+% \vfill
+% 
+% \begin{exampleblock}{Exemplo}
+% \begin{table}[htb]
+%     \centering
+%     \begin{tabular}{|c|c|}
+%         \hline
+%         \textbf{Nome do atributo} & \textbf{Tipo do atributo} \\
+%         \hline
+%         Nome             & texto           \\
+%         \hline
+%         Idade            & inteiro         \\
+%         \hline
+%         Altura \( (m) \) & ponto flutuante \\
+%         \hline
+%     \end{tabular}
+% \end{table}
+% \end{exampleblock}
+% 
+% \end{frame}
+% }
 
 %------------------------------------------------
 
@@ -473,7 +484,7 @@ $\left\{
         \( de_{2} \) & Bob     & 25 & \( 1,79 \) \\
         \( de_{3} \) & Charlie & 42 & \( 1,85 \) & \rdelim\}{1}{.1mm}[\( dc_{2} \)] \\
     \end{tabular}
-    \caption{Diferença entre coleção de dados e elemento de dados: \( dc_{1} = \{de_{1}, de_{2}\} \) e \( dc_{2} = \{ de_{3} \} \)}
+    \caption{\( dc_{1} = \{de_{1}, de_{2}\} \) e \( dc_{2} = \{ de_{3} \} \)}
 \end{table}
 
 \end{frame}
@@ -481,27 +492,29 @@ $\left\{
 %------------------------------------------------
 
 {\nologo
-\begin{frame}[t,squeeze]{Dados de proveniência}{Especificação}
+\begin{frame}{Dados de proveniência}{Especificação}
 
 \begin{alertblock}{Proveniência $\approx$ \textsc{causalidade}}
 \textit{``Lugar de onde alguém ou alguma coisa provém; origem; fonte.''} \\
 \hspace*{\fill}--- \textsc{Dicionário Aulete}
 \end{alertblock}
 
+\vfill
+
 \begin{exampleblock}{Tipos de dados de proveniência}
 \centerline{Diferentes níveis de abstração:}
 \begin{description}[retrospectiva]
-\item[prospectiva] \alert{processo} computacional, passo-a-passo
+\item[prospectiva] \alert{processo computacional}, passo-a-passo
 \item[retrospectiva] contexto de \alert{execução}
 \end{description}
 \end{exampleblock}
 
-\begin{block}{Captura de dados de proveniência}
-\begin{itemize}
-\item \textit{online} $\rightarrow$ flexível
-\item \textit{offline} $\rightarrow$ desempenho
-\end{itemize}
-\end{block}
+% \begin{block}{Captura de dados de proveniência}
+% \begin{itemize}
+% \item \textit{online} $\rightarrow$ flexível
+% \item \textit{offline} $\rightarrow$ desempenho
+% \end{itemize}
+% \end{block}
 
 \note[item]{\{ambiente, tempo\} de execução}
 \end{frame}
@@ -509,31 +522,31 @@ $\left\{
 
 %------------------------------------------------
 
-\begin{frame}[t]{Dados de proveniência}{Exemplo}
-
-\centerline{\footnotesize \textbf{Proveniência Prospectiva}}
-
-\begin{figure}
-\includegraphics[width=\textwidth]{img/word-count-prospective.pdf}
-\end{figure}
-
-\begin{table}[htb]
-    \centering
-    \footnotesize
-    \begin{tabular}{r|l}
-        \multicolumn{2}{c}{\textbf{Proveniência Retrospectiva}} \\
-        \midrule
-        \textit{Timestamp} de início & 2017-06-25 03:11:05.231                         \\
-        \textit{Timestamp} de fim    & 2017-06-25 03:11:09.586                         \\
-        PID                          & 4671                                            \\
-        Linha de comando             & \texttt{./sort --in=freq-list.csv} \\
-        Variáveis de ambiente        & \texttt{PWD=/exec:PATH=/usr/bin} \\
-        Usuário                      & tperrotta                                       \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\end{frame}
+% \begin{frame}[t]{Dados de proveniência}{Exemplo}
+% 
+% \centerline{\footnotesize \textbf{Proveniência Prospectiva}}
+% 
+% \begin{figure}
+% \includegraphics[width=\textwidth]{img/word-count-prospective.pdf}
+% \end{figure}
+% 
+% \begin{table}[htb]
+%     \centering
+%     \footnotesize
+%     \begin{tabular}{r|l}
+%         \multicolumn{2}{c}{\textbf{Proveniência Retrospectiva}} \\
+%         \midrule
+%         \textit{Timestamp} de início & 2017-06-25 03:11:05.231                         \\
+%         \textit{Timestamp} de fim    & 2017-06-25 03:11:09.586                         \\
+%         PID                          & 4671                                            \\
+%         Linha de comando             & \texttt{./sort --in=freq-list.csv} \\
+%         Variáveis de ambiente        & \texttt{PWD=/exec:PATH=/usr/bin} \\
+%         Usuário                      & tperrotta                                       \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+% 
+% \end{frame}
 
 %------------------------------------------------
 
@@ -570,7 +583,7 @@ $\left\{
     \end{exampleblock}
     \vfill
     \setbeamercovered{invisible}
-    \pause
+%     \pause
     \centerline{\textit{\large ``Como realizar esses três tipos de consulta?''}}
     \vfill
 \end{frame}
@@ -613,8 +626,6 @@ $\left\{
 \item \alert{QPP: Pré-processador de consultas}
 \end{itemize}
 
-\perrotta{Mais alguma sugestão?}
-
 \note[item]{MonetDB: lazy indexing / optimization}
 \end{frame}
 
@@ -623,7 +634,7 @@ $\left\{
 \subsection*{QPP: Pré-processador de consultas}
 
 \begin{frame}[t]{QPP: Pré-processador de consultas}
-% \todox{QPP, Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas}
+% QPP, Citar o objetivo do trabalho, descrever eventuais vantagens que serão buscadas
 
 \centerline{\large{\textsc{Proposta}}}
 
@@ -655,8 +666,8 @@ $\left\{
 \centerline{\textbf{Soluções}}
 
 \begin{itemize}
-    \item Consultas em SQL geradas automaticamente
-    \item Junções ``automáticas'' baseadas no rastreio de dados de proveniência
+    \item Consultas em SQL geradas \alert{automaticamente}
+    \item Junções ``automáticas'' baseadas no \alert{rastreio de dados de proveniência}
     \item Sem necessidade de se conhecer a fundo o esquema do BD
 \end{itemize}
 
@@ -778,8 +789,6 @@ $\left\{
 \vfill
 \end{itemize}
 
-\perrotta{Mais alguma sugestão?}
-
 \end{frame}
 
 %------------------------------------------------
@@ -823,8 +832,7 @@ dsExcludes         & lista de conjuntos de dados \\
 \vfill
 
 \begin{itemize}
-\item Produto cartesiano entre os conjuntos de dados de entrada e os de saída
-\item Busca em profundidade (DFS)
+\item Produto cartesiano dos possíveis caminhos entre dois conjuntos de dados
 \end{itemize}
 
 \end{frame}
@@ -835,7 +843,7 @@ dsExcludes         & lista de conjuntos de dados \\
 
 \vspace{-.75cm}
 
-\begin{columns}
+\begin{columns}[t]
 
 \column{0.75\textwidth}
 
@@ -845,9 +853,13 @@ dsExcludes         & lista de conjuntos de dados \\
 
 \column{0.25\textwidth}
 
+\bigskip
+\bigskip
 ds\textsubscript{1} $\vdash$ ds\textsubscript{4}
 
 \end{columns}
+
+\hrule{}
 
 \begin{columns}[t]
 
@@ -859,6 +871,8 @@ ds\textsubscript{1} $\vdash$ ds\textsubscript{4}
 
 \column{0.25\textwidth}
 
+\bigskip
+\bigskip
 ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 
 \end{columns}
@@ -917,44 +931,43 @@ ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 \subsection*{Ambiente dos experimentos}
 \begin{frame}{Ambiente dos experimentos}
 
-% \begin{columns}[t]
-%
-% \column{.45\textwidth}
-% 
-% \vspace{-.7cm}
-% 
-% \begin{block}{\textit{Solver} de sedimentação}
-% Execução paralela ($480$~núcleos) no \textit{cluster} Lobo~Carneiro do NACAD\footnotemark{}
-% \end{block}
-% 
-% \begin{figure}
-% \includegraphics[width=\textwidth]{img/loboc.jpg}
-% \end{figure}
-% 
-% \setbeamercovered{invisible}
-% \pause
-% 
-% \column{.45\textwidth}
-%
-% \vspace{-.7cm}
+\begin{columns}[t]
+
+\column{.45\textwidth}
+
+\vspace{-.7cm}
+
+\begin{block}{\textit{Solver} de sedimentação}
+Execução paralela ($480$~núcleos) no \textit{cluster} Lobo~Carneiro do NACAD\footnotemark{}
+\end{block}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{img/loboc.jpg}
+\end{figure}
+
+\setbeamercovered{invisible}
+
+\column{.45\textwidth}
+
+\vspace{-.7cm}
 
 \begin{block}{Consultas}
-Geração e execução em um Macbook Pro Retina 2015:
+Geração e execução em um Macbook Pro 2015:
 
 \begin{itemize}
 \item Intel Core i5 2,7~GHz
 \item 4~CPUs
-\item 8~GB de RAM DDR3
+\item 8~GB de RAM
 \end{itemize}
 \end{block}
 
 \begin{figure}
-\includegraphics[width=.75\textwidth]{img/macbook.png}
+\includegraphics[width=.5\textwidth]{img/macbook.png}
 \end{figure}
 
-% \end{columns}
-%
-% \footnotetext{\url{http://www.nacad.ufrj.br/pt/recursos/sgiicex}}
+\end{columns}
+
+\footnotetext{\url{https://www.nacad.ufrj.br/pt/recursos/sgiicex}}
 
 \end{frame}
 
@@ -1040,7 +1053,7 @@ Análise ao longo do \alert{tempo} da média da \alert{concentração de sedimen
 
 \begin{frame}[fragile]{Consulta \#1}{SQL gerado}
 
-\begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio: 40,29~ms}]
+\begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio da geração: 40,29~ms}]
 SELECT osolversimulationtransport.time, AVG(oline2extraction.d)
 FROM osolversimulationtransport, oline2extraction, omeshwriter
 WHERE (osolversimulationtransport.line2extraction_task_id = oline2extraction.line2extraction_task_id)
@@ -1055,7 +1068,9 @@ GROUP BY osolversimulationtransport.time;
 \begin{frame}[fragile]{Consulta \#1}{Resultados da consulta SQL}
 
 \begin{center}
-\begin{lstlisting}[language=sqlresults,caption={7 tuplas, tempo médio: 4,35~ms}]
+\begin{lstlisting}[language=sqlresults,
+% caption={7 tuplas, tempo médio da execução: 4,35~ms}
+]
 +-------------+--------------------------+
 | time        | AVG(oline2extraction.d)  |
 +=============+==========================+
@@ -1076,6 +1091,8 @@ GROUP BY osolversimulationtransport.time;
 
 {\nologo
 \begin{frame}{Consulta \#2}{Especificação}
+
+\vspace{-.175cm}
 
 \begin{block}{Objetivo}
 \small{Análise da concentração de sedimentos em uma linha considerando um instante de tempo fixo e um intervalo específico de valores.}
@@ -1114,7 +1131,7 @@ GROUP BY osolversimulationtransport.time;
 
 \vspace{-1.5cm}
 
-\begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio: 15,45~ms}]
+\begin{lstlisting}[language=sql,deletendkeywords={TIME},caption={tempo médio da geração: 15,45~ms}]
 SELECT osolversimulationtransport.time, oline0extraction.points0, oline0extraction.points1, oline0extraction.points2, oline0extraction.d
 FROM osolversimulationtransport, oline0extraction, omeshwriter
 WHERE (osolversimulationtransport.time < 5.5)
@@ -1133,20 +1150,18 @@ LIMIT 10;
 
 \begin{block}{QPP $\Rightarrow$ \texttt{generateSqlQuery}}
 \begin{itemize}
-\item \alert{\textsc{[OK]}} Resultados esperados foram obtidos
+\item[\checkmark] Resultados esperados foram obtidos
 \begin{itemize}
-\item sintaticamente válidos
+\item[\checkmark] sintaticamente válidos
 \end{itemize}
-\item \alert{\textsc{[OK]}} Baixo \textit{overhead} de tempo para a geração das consultas $\rightarrow$ ordem de \texttt{ms}
+\item[\checkmark] Baixa sobrecarga de tempo para a geração das consultas $\rightarrow$ ordem de \texttt{ms}
 \begin{itemize}
-\item pré-processamento com as estruturas de dados % os \textit{hash multimaps}
-\item idempotente
+\item[\checkmark] pré-processamento com as estruturas de dados % os \textit{hash multimaps}
+\item[\checkmark] idempotente
 \end{itemize}
-\item \alert{\textsc{[OK]}} intuitiva de usar
+\item[\checkmark] intuitiva de usar
 \end{itemize}
 \end{block}
-
-\perrotta{Mais alguma sugestão?}
 
 \end{frame}
 
@@ -1154,7 +1169,7 @@ LIMIT 10;
 
 \section{Conclusão}
 
-\subsection{Trabalhos futuros}
+\subsection*{Trabalhos futuros}
 \begin{frame}{Trabalhos futuros}
 \begin{itemize}
   \item interface gráfica (visualizador)
@@ -1189,7 +1204,7 @@ LIMIT 10;
 
 % Vitor: O importante é enfatizar o rastreio do fluxo de elementos de dados em uma simulação computacional por meio da abstração de fluxo de dados (no nível lógico). Do ponto de vista de implementação, temos que valorizar as junções "automáticas" (a partir da análise do mapeamento de atributos) e a facilidade em desenvolver uma consulta na nossa abordagem.
 
-\onslide<1>{
+% \onslide<1>{
 \begin{block}{Simulação computacional...}
 \begin{itemize}
 \item Fluxo, conjuntos, transformações, atributos de dados\ldots{}
@@ -1197,11 +1212,11 @@ LIMIT 10;
 \item Dados de proveniência (prospectiva, retrospectiva), \textit{workflows}\ldots{}
 \end{itemize}
 \end{block}
-}
+% }
 
 \vfill
 
-\onslide<2>{
+% \onslide<2>{
 \begin{alertblock}{ARMFUL $\Rightarrow$ DfAnalyzer $\Rightarrow$ QPP}
 \begin{itemize}
 \item \alert{Rastreio} do fluxo de elementos de dados
@@ -1209,10 +1224,10 @@ LIMIT 10;
 \item Mapeamento de atributos $\rightarrow$ \alert{junções ``automáticas''}
 \item \alert{Facilidade} em desenvolver consultas
 \item Não há necessidade de se conhecer o esquema do BD
-\item Baixo \textit{overhead} de execução
+\item Baixa sobrecarga de execução
 \end{itemize}
 \end{alertblock}
-}
+% }
 
 \note[item]{arquivos científicos}
 \note[item]{recapitular o conteúdo conceitual abordado}
@@ -1234,6 +1249,13 @@ LIMIT 10;
 
 % https://tex.stackexchange.com/questions/30461/beamer-nonumber-equivalent-for-slides
 \appendix
+
+% Blank slide
+
+\begin{frame}[plain]
+\end{frame}
+
+%------------------------------------------------
 
 {
 \setbeamertemplate{footline}{}
@@ -1323,6 +1345,12 @@ LIMIT 10;
 % \end{exampleblock}
 %
 % \note[item]{Note that this slide is boring.}
-%
+% 
 % \end{frame}
 %------------------------------------------
+%
+%
+% Antecipar:
+% - dificuldades técnicas
+% - como isso efetivamente auxilia o usuário
+% - processador de consultas (otimização)
