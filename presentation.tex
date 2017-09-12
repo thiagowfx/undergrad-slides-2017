@@ -238,14 +238,14 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \newcommand{\nologo}{\setbeamertemplate{logo}{}} % command to set the logo to nothing
 
 % Prepend TOC to every section
-\AtBeginSection[] {
-%     \begin{withoutheadline}
-%     \setbeamertemplate{footline}{}
-    \begin{frame}<beamer>{Agenda}
-    \tableofcontents[currentsection]  
-    \end{frame}
-%     \end{withoutheadline}
-}
+% \AtBeginSection[] {
+%    \begin{withoutheadline}
+%    \setbeamertemplate{footline}{}
+%    \begin{frame}<beamer>{Agenda}
+%    \tableofcontents[currentsection]  
+%    \end{frame}
+%    \end{withoutheadline}
+% }
 
 % \includeonlyframes{
 % current,
@@ -270,12 +270,12 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 %------------------------------------------------
 
 % Print the table of contents
-% \begin{withoutheadline}
-% \setbeamertemplate{footline}{}
-% \begin{frame}{Agenda}
-%   \tableofcontents{} % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-% \end{withoutheadline}
+\begin{withoutheadline}
+\setbeamertemplate{footline}{}
+\begin{frame}{Agenda}
+  \tableofcontents{} % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+\end{withoutheadline}
 
 %------------------------------------------------
 
@@ -322,9 +322,8 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 \begin{frame}{Motivação}
 
 \begin{itemize}
-    \item Simulações computacionals levam um longo tempo para serem executadas % mesmo em PAD
+    \item Simulações computacionais levam um longo tempo para serem executadas % mesmo em PAD
     \item Torna-se necessário extrair resultados mesmo \emph{antes} do término das mesmas
-    \pause
     \item Avaliar grandezas tais como resíduos ou estimativas de erro
     \item Soluções existentes são difíceis de serem configuradas pelos usuários
 \end{itemize}
@@ -344,7 +343,7 @@ $\left\{
 \begin{tabular}{p{\textwidth}}
 \begin{itemize}
     \item \( T = \{dt_1, dt_2, \ldots, dt_{\alpha}\} \) : conjuntos de \alert{transformações}
-    \item \( S = \{ds_1, ds_2, \ldots, ds_{\beta}\} \) : conjuntos de \alert{dados}
+    \item \( S = \{ds_1, ds_2, \ldots, ds_{\beta}\} \) : \alert{conjuntos de dados}
     \item \( \Phi = \{\phi_1, \phi_2, \ldots, \phi_{\gamma}\} \) : \alert{dependências} de dados
 \end{itemize}
 \end{tabular}
@@ -395,8 +394,8 @@ $\left\{
 $\left\{
 \begin{tabular}{p{\textwidth}}
 \begin{itemize}
-    \item \( A = \{da_1, da_2, \ldots, da_{\delta} \} \) : \alert{atributos} de dados
-    \item \( C = \{dc_1, dc_2, \ldots, dc_{\zeta} \} \) : \alert{coleções} de dados
+    \item \( A = \{a_1, a_2, \ldots, a_{\delta} \} \) : \alert{atributos} de dados
+    \item \( C = \{dc_1, dc_2, \ldots, dc_{\zeta} \} \) : \alert{coleções de dados}
 \end{itemize}
 \end{tabular}
 \right.$
@@ -415,7 +414,7 @@ $\left\{
 {\nologo
 \begin{frame}{Atributo de dados}
 
-\centerline{\( A = \{da_1, da_2, \ldots, da_{\delta} \} \)}
+\centerline{\( A = \{a_1, a_2, \ldots, a_{\delta} \} \)}
 
 $\left\{
 \begin{tabular}{p{\textwidth}}
@@ -564,15 +563,15 @@ $\left\{
 \begin{frame}[t]{O problema}
     \begin{exampleblock}{Três tipos de consulta}
     \begin{enumerate}
-        \item Análise de \alert{dados científicos} $\mid$ Conteúdo de domínio
-        \item Rastreamento do fluxo de \alert{múltiplos arquivos}
+        \item Análise de \alert{dados científicos} proveniente de apenas um arquivo % $\mid$ Conteúdo de domínio
+        \item Rastreamento do \alert{fluxo de múltiplos arquivos}
         \item Rastreamento de \alert{elementos de dados relacionados} em múltiplos arquivos
     \end{enumerate}
     \end{exampleblock}
     \vfill
     \setbeamercovered{invisible}
     \pause
-    \centerline{\textit{\large ``Como realizar os três tipos anteriores de consulta?''}}
+    \centerline{\textit{\large ``Como realizar esses três tipos de consulta?''}}
     \vfill
 \end{frame}
 
@@ -582,47 +581,16 @@ $\left\{
 
 \begin{frame}[t]{A arquitetura ARMFUL}
 
-\only<1 | handout:1>{
-\framesubtitle{Conceito}
-\begin{block}{Funcionamento}
-\begin{enumerate}
-\item Gerência de conteúdo científico $\leftarrow$ arquivos científicos
-\item Indexação dos dados científicos
-\item Correlação em um SGBD relacional
-\begin{itemize}
-\item Dados de domínio $\searrow$
-\item Dados de proveniência do fluxo de dados
-\end{itemize}
-\end{enumerate}
-\end{block}
-
-\begin{itemize}
-\item Baseada em componentes
-\item Suporta os 3 tipos de consulta mencionados
-\item \textit{On-line} e \textit{off-line}
-\end{itemize}
-
-\perrotta{Mais alguma sugestão?}
-
-\note[item]{leitura do conteúdo, tokenização, filtragem de conteúdo, análise}
-}
-
-\only<2 | handout:2>{
-\framesubtitle{Diagrama}
 \begin{figure}
 \includegraphics[width=\textwidth]{img/armful-architecture-simplified.pdf}
-% \caption{
-% \\ Cor branca: captura de dados de proveniência
-% \\ Cor cinza: etapas de processamento
-% }
 \end{figure}
 
-\begin{description}[Cor branca]
-\item[Cor branca] a captura de dados de proveniência
-\item[Cor cinza] as etapas de processamento
-\end{description}
-}
-
+\note[item]{Baseada em componentes}
+\note[item]{Suporta os 3 tipos de consulta mencionados}
+\note[item]{\textit{On-line} e \textit{off-line}}
+\note[item]{Leitura do conteúdo, tokenização, filtragem de conteúdo, análise}
+\note[item]{Correlação em um SGBD relacional: dados de domínio e dados de proveniência do fluxo de dados}
+\note[item]{Gerência de conteúdo científico $\leftarrow$ arquivos científicos}
 \end{frame}
 
 %------------------------------------------------
@@ -666,16 +634,16 @@ $\left\{
 \centerline{\textbf{Problemas}}
 
 \begin{itemize}
-\item<1-> Expressar manualmente consultas em SQL
+\item Expressar manualmente consultas em SQL
     \begin{itemize}
     \item enfadonho
     \item propenso a erros
     \end{itemize}
-\item<2-> Identificar relacionamentos
+\item Identificar relacionamentos
     \begin{itemize}
     \item complexo
     \end{itemize}
-\item<3-> É necessário conhecer o esquema do BD
+\item É necessário conhecer o esquema do BD
 \end{itemize}
 
 \end{column}
@@ -687,9 +655,9 @@ $\left\{
 \centerline{\textbf{Soluções}}
 
 \begin{itemize}
-    \item<1- | alert@1> Consultas em SQL geradas automaticamente
-    \item<2- | alert@2> Junções ``automáticas'' baseadas no rastreio de dados de proveniência
-    \item<3- | alert@3> Sem necessidade de se conhecer a fundo o esquema do BD
+    \item Consultas em SQL geradas automaticamente
+    \item Junções ``automáticas'' baseadas no rastreio de dados de proveniência
+    \item Sem necessidade de se conhecer a fundo o esquema do BD
 \end{itemize}
 
 \end{column}
@@ -703,7 +671,7 @@ $\left\{
 \subsection*{Metodologia}
 
 {\nologo
-\begin{frame}[t]{Metodologia}{Mapeamento de atributos}
+\begin{frame}[t]{Metodologia -- Mapeamento de atributos}
 
 \only<1 | handout:1>{
 \begin{alertblock}{\textbf{Definição}: mapeamento de atributos}
@@ -718,44 +686,42 @@ $\left\{
 
 \begin{block}{Tipos de mapeamento de atributos}
 \begin{description}[híbrido]
-\item[físico]  atributos relacionados à mesma instância de execução (\textit{taskid}) % / tarefa
+\item[físico]  atributos relacionados à mesma instância de execução ou tarefa
 \item[lógico]  atributos de domínio
 \item[híbrido] \emph{ambos} os anteriores
 \end{description}
 \end{block}
-
-\perrotta{Destacar o híbrido? Nossa proposta?}
 }
 
-\only<2 | handout:2>{
-\vspace{-.6cm}
-
-\begin{figure}
-\includegraphics[width=.6\textwidth]{img/example-query-dataflow.pdf}
-\end{figure}
-
-\begin{table}[!htb]
-    \small
-    \centering
-    \begin{tabular}{c|c|c}
-    \textbf{Conjunto de dados} & \textbf{Nome do atributo} & \textbf{Tipo do atributo} \\ \hline
-\rowcolor{red!10}
-$ds_1$                        & $da_1$                        & inteiro                 \\
-$ds_1$                        & $da_2$                        & booleano                \\
-\rowcolor{blue!10}
-$ds_1$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\ \hline
-\rowcolor{red!10}
-$ds_2$                        & $da_1$                        & inteiro                 \\
-$ds_2$                        & $da_2$                        & inteiro                 \\
-\rowcolor{blue!10}
-$ds_2$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\
-\rowcolor{green!10}
-$ds_2$                        & $\textup{taskid\_}dt_2$      & inteiro                 \\ \hline
-\rowcolor{green!10}
-$ds_4$                        & $\textup{taskid\_}dt_2$      & inteiro                  
-    \end{tabular}
-\end{table}
-}
+% \only<2 | handout:2>{
+% \vspace{-.6cm}
+% 
+% \begin{figure}
+% \includegraphics[width=.6\textwidth]{img/example-query-dataflow.pdf}
+% \end{figure}
+% 
+% \begin{table}[!htb]
+%     \small
+%     \centering
+%     \begin{tabular}{c|c|c}
+%     \textbf{Conjunto de dados} & \textbf{Nome do atributo} & \textbf{Tipo do atributo} \\ \hline
+% \rowcolor{red!10}
+% $ds_1$                        & $da_1$                        & inteiro                 \\
+% $ds_1$                        & $da_2$                        & booleano                \\
+% \rowcolor{blue!10}
+% $ds_1$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\ \hline
+% \rowcolor{red!10}
+% $ds_2$                        & $da_1$                        & inteiro                 \\
+% $ds_2$                        & $da_2$                        & inteiro                 \\
+% \rowcolor{blue!10}
+% $ds_2$                        & $\textup{taskid\_}dt_1$      & inteiro                 \\
+% \rowcolor{green!10}
+% $ds_2$                        & $\textup{taskid\_}dt_2$      & inteiro                 \\ \hline
+% \rowcolor{green!10}
+% $ds_4$                        & $\textup{taskid\_}dt_2$      & inteiro                  
+%     \end{tabular}
+% \end{table}
+% }
 
 \end{frame}
 }
@@ -924,21 +890,21 @@ ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 \end{figure}
 }
 
-\only<2 | handout:2>{
-\begin{block}{Como?}
-\begin{itemize}
-\item \texttt{libMesh}: refinamento de malhas e elementos finitos adaptativos
-\item equação de incompressibilidade
-\item equação de transporte
-\end{itemize}
-\end{block}
-
-\captionsetup[figure]{skip=-5pt}
-\begin{figure}
-\includegraphics[width=.9\textwidth]{img/sedimentation.png}\hspace*{\fill}
-\caption{Ilustração representativa da dinâmica de fluidos}
-\end{figure}
-}
+% \only<2 | handout:2>{
+% \begin{block}{Como?}
+% \begin{itemize}
+% \item \texttt{libMesh}: refinamento de malhas e elementos finitos adaptativos
+% \item equação de incompressibilidade
+% \item equação de transporte
+% \end{itemize}
+% \end{block}
+% 
+% \captionsetup[figure]{skip=-5pt}
+% \begin{figure}
+% \includegraphics[width=.9\textwidth]{img/sedimentation.png}\hspace*{\fill}
+% \caption{Ilustração representativa da dinâmica de fluidos}
+% \end{figure}
+% }
 
 \note[item]{turbidez encontrada em processos geológicos}
 \note[item]{libMesh: biblioteca em C++}
@@ -951,26 +917,26 @@ ds\textsubscript{2} $\vdash$ ds\textsubscript{5}, ds\textsubscript{6}
 \subsection*{Ambiente dos experimentos}
 \begin{frame}{Ambiente dos experimentos}
 
-\begin{columns}[t]
-
-\column{.45\textwidth}
-
-\vspace{-.7cm}
-
-\begin{block}{\textit{Solver} de sedimentação}
-Execução paralela ($480$~núcleos) no \textit{cluster} Lobo~Carneiro do NACAD\footnotemark{}
-\end{block}
-
-\begin{figure}
-\includegraphics[width=\textwidth]{img/loboc.jpg}
-\end{figure}
-
-\setbeamercovered{invisible}
-\pause
-
-\column{.45\textwidth}
-
-\vspace{-.7cm}
+% \begin{columns}[t]
+%
+% \column{.45\textwidth}
+% 
+% \vspace{-.7cm}
+% 
+% \begin{block}{\textit{Solver} de sedimentação}
+% Execução paralela ($480$~núcleos) no \textit{cluster} Lobo~Carneiro do NACAD\footnotemark{}
+% \end{block}
+% 
+% \begin{figure}
+% \includegraphics[width=\textwidth]{img/loboc.jpg}
+% \end{figure}
+% 
+% \setbeamercovered{invisible}
+% \pause
+% 
+% \column{.45\textwidth}
+%
+% \vspace{-.7cm}
 
 \begin{block}{Consultas}
 Geração e execução em um Macbook Pro Retina 2015:
@@ -986,9 +952,9 @@ Geração e execução em um Macbook Pro Retina 2015:
 \includegraphics[width=.75\textwidth]{img/macbook.png}
 \end{figure}
 
-\end{columns}
-
-\footnotetext{\url{http://www.nacad.ufrj.br/pt/recursos/sgiicex}}
+% \end{columns}
+%
+% \footnotetext{\url{http://www.nacad.ufrj.br/pt/recursos/sgiicex}}
 
 \end{frame}
 
@@ -1028,14 +994,14 @@ otimestepcontrolconfig                      & model\_name                & strin
 
 %------------------------------------------------
 
-\begin{frame}
-
-\begin{figure}
-\includegraphics[width=.9\textwidth]{img/slides-dataflow.pdf}
-\hspace*{\fill}
-\end{figure}
-
-\end{frame}
+% \begin{frame}
+% 
+% \begin{figure}
+% \includegraphics[width=.9\textwidth]{img/slides-dataflow.pdf}
+% \hspace*{\fill}
+% \end{figure}
+% 
+% \end{frame}
 
 %------------------------------------------------
 
@@ -1190,7 +1156,7 @@ LIMIT 10;
 
 \subsection{Trabalhos futuros}
 \begin{frame}{Trabalhos futuros}
-\begin{itemize}[<+->]
+\begin{itemize}
   \item interface gráfica (visualizador)
   \vfill
   \item validação das especificações do usuário
@@ -1198,7 +1164,7 @@ LIMIT 10;
   \item permitir subconsultas
   \vfill
   \item suportar mais cláusulas SQL:
-    \begin{itemize}[<.->]
+    \begin{itemize}
       \item agregados, \textit{e.g.} \texttt{COUNT(*)} e \texttt{GROUP BY}
       \item \texttt{SELECT DISTINCT}
       \item \texttt{LIMIT}
@@ -1258,11 +1224,10 @@ LIMIT 10;
 
 %------------------------------------------------
 
-\begin{frame}{Obrigado!}
-\Huge{\centerline{Perguntas?}}
+\begin{frame}
+\Huge{\centerline{Obrigado!}}
 
 \note[item]{agradecer a atenção das pessoas}
-\note[item]{se alguém quiser comentar algo, fique à vontade}
 \end{frame}
 
 %------------------------------------------------
@@ -1297,12 +1262,12 @@ LIMIT 10;
 
 %------------------------------------------------
 
-{
-\setbeamertemplate{footline}{}
-\begin{frame}{Slides}
-Disponíveis em: \url{https://speakerdeck.com/thiagowfx}
-\end{frame}
-}
+% {
+% \setbeamertemplate{footline}{}
+% \begin{frame}{Slides}
+% Disponíveis em: \url{https://speakerdeck.com/thiagowfx}
+% \end{frame}
+% }
 
 %------------------------------------------------
 
