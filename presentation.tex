@@ -212,7 +212,7 @@
 %----------------------------------------------------------------------------------------
 \title[Análise do Rastro de Proveniência]{Análise do Rastro de Proveniência em Simulações Computacionais em Larga Escala} % The short title [] appears at the bottom of every slide, the full title is only on the title page
 
-\author[Thiago B. Perrotta]{Thiago Barroso Perrotta} % Your name
+\author[Thiago B. Perrotta]{Thiago Barroso Perrotta \\ \smallskip \small{Orientadores: Marta Mattoso e Vítor Silva}} % Your name
 \institute[UFRJ] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 Engenharia de Computação e Informação \\ \smallskip
@@ -260,7 +260,7 @@ Escola Politécnica --- Universidade Federal do Rio de Janeiro \\ % Your institu
 {
 \setbeamertemplate{headline}{}
 \setbeamertemplate{footline}{}
-\begin{frame}
+\begin{frame}[label=title]
   \titlepage{}
 \end{frame}
 % \frame{\titlepage}
@@ -362,8 +362,6 @@ $\left\{
 \begin{figure}
 \includegraphics[width=.35\textwidth]{img/graph.pdf}
 \end{figure}
-
-\note[item]{Pode representar uma simulação computacional}
 \end{frame}
 
 %------------------------------------------------
@@ -601,9 +599,7 @@ $\left\{
 \note[item]{Baseada em componentes}
 \note[item]{Suporta os 3 tipos de consulta mencionados}
 \note[item]{\textit{On-line} e \textit{off-line}}
-\note[item]{Leitura do conteúdo, tokenização, filtragem de conteúdo, análise}
 \note[item]{Correlação em um SGBD relacional: dados de domínio e dados de proveniência do fluxo de dados}
-\note[item]{Gerência de conteúdo científico $\leftarrow$ arquivos de dados científicos}
 \end{frame}
 
 %------------------------------------------------
@@ -1208,8 +1204,8 @@ LIMIT 10;
 \begin{block}{Simulação computacional...}
 \begin{itemize}
 \item Fluxo, conjuntos, transformações, atributos de dados\ldots{}
-\item Análise de dados de domínio para simulações subsequentes
-\item Dados de proveniência (prospectiva, retrospectiva), \textit{workflows}\ldots{}
+\item Análise de dados de domínio para simulações
+\item Dados de proveniência (prospectiva, retrospectiva)\ldots{}
 \end{itemize}
 \end{block}
 % }
@@ -1219,12 +1215,12 @@ LIMIT 10;
 % \onslide<2>{
 \begin{alertblock}{ARMFUL $\Rightarrow$ DfAnalyzer $\Rightarrow$ QPP}
 \begin{itemize}
-\item \alert{Rastreio} do fluxo de elementos de dados
+\item \alert{Rastreio} de dados de proveniência
 \item \alert{Abstração} do fluxo de dados (níveis físico, lógico e híbrido)
 \item Mapeamento de atributos $\rightarrow$ \alert{junções ``automáticas''}
 \item \alert{Facilidade} em desenvolver consultas
-\item Não há necessidade de se conhecer o esquema do BD
-\item Baixa sobrecarga de execução
+\item Não há necessidade de se conhecer a fundo o esquema do BD
+\item Baixa sobrecarga de execução $\leftarrow$ bom desempenho
 \end{itemize}
 \end{alertblock}
 % }
@@ -1252,8 +1248,13 @@ LIMIT 10;
 
 % Blank slide
 
-\begin{frame}[plain]
-\end{frame}
+% \begin{frame}[plain]
+% \end{frame}
+
+{
+\setbeamertemplate{footline}{}
+\againframe{title}
+}
 
 %------------------------------------------------
 
